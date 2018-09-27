@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui actions: startSpinner 1`] = `
+Object {
+  "type": "START_FETCHING",
+}
+`;

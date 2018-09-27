@@ -13,7 +13,65 @@
 */
 
 import { LocalStorage } from './mocks/localStorage';
+import { fetch } from './mocks/fetch';
+
+const successMessage = 'TEST_SUCCESS_MESSAGE.';
+const errorMessage = 'TEST_ERROR_MESSAGE.';
+const token = 'TEST_TOKEN';
+const error = new Error(errorMessage);
+const testMessage = 'test message';
+
+const updateTask = {
+    id:        'TEST_ID',
+    message:   testMessage,
+    completed: true,
+    favorite:  true,
+};
+
+
+const testAction = 'TEST_ACTION';
+
+const responseDataSuccess = {
+    data:    updateTask,
+    message: successMessage,
+};
+
+const responseDataFail = {
+    message: errorMessage,
+};
+
+const fetchResponseSuccess = {
+    status: 200,
+    json:   jest.fn(() => Promise.resolve(responseDataSuccess)),
+};
+
+const fetchResponseFail401 = {
+    status: 401,
+    json:   jest.fn(() => Promise.resolve(responseDataFail)),
+};
+
+const fetchResponseFail400 = {
+    status: 400,
+    json:   jest.fn(() => Promise.resolve(responseDataFail)),
+};
+
+const url = 'https://www.url.com';
 
 global.localStorage = new LocalStorage();
+
+global.__ = {
+    updateTask,
+    errorMessage,
+    token,
+    error,
+    testMessage,
+    responseDataSuccess,
+    responseDataFail,
+    fetchResponseSuccess,
+    fetchResponseFail401,
+    fetchResponseFail400,
+    url,
+    testAction,
+};
 
 global.__ENV__ = global.__PROD__ = process.env.NODE_ENV;
